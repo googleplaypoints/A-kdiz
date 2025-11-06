@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aşk diz - أفضل المسلسلات التركية المترجمة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #c41e3a;
+            --primary-dark: #8b1429;
+            --secondary: #2c3e50;
+            --accent: #e67e22;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #6c757d;
+            --border: #dee2e6;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-hover: rgba(196, 30, 58, 0.2);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        nav {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary);
+            font-family: 'Amiri', serif;
+        }
+
+        .logo-subtitle {
+            font-size: 13px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-title {
+            font-size: 52px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            font-family: 'Amiri', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .series-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .series-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+
+        .series-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 420px;
+        }
+
+        .series-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .series-card:hover .series-image {
+            transform: scale(1.08);
+        }
+
+        .series-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .series-info {
+            padding: 25px;
+        }
+
+        .series-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .series-title-en {
+            font-size: 15px;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .series-meta {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            max-width: 1000px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 35px 40px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            background: white;
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            font-family: 'Amiri', serif;
+        }
+
+        .modal-title-en {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-description {
+            font-size: 17px;
+            line-height: 2;
+            color: var(--text-dark);
+            margin-bottom: 35px;
+            text-align: justify;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 10px;
+            border-right: 4px solid var(--primary);
+        }
+
+        .episodes-section-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .episodes-section-title::before {
+            content: '▶';
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 15px;
+        }
+
+        .episode-btn {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            color: var(--text-dark);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .episode-btn::before {
+            content: 'الحلقة';
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .episode-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow-hover);
+        }
+
+        /* Video Player - Full Screen with Rumble */
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 3000;
+        }
+
+        .video-player.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .video-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .close-player {
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-player:hover {
+            background: var(--primary-dark);
+        }
+
+        .video-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Rumble Player Styling */
+        #rumble_player {
+            width: 100%;
+            max-width: 1400px;
+            height: 100%;
+        }
+
+        #rumble_player iframe {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                right: 0;
+                left: 0;
+                background: var(--bg-white);
+                flex-direction: column;
+                padding: 20px;
+                display: none;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .series-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .video-container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Rumble Script - يتم تحميله مرة واحدة -->
+    <script>
+        !function(r,u,m,b,l,e){r._Rumble=b,r[b]||(r[b]=function(){(r[b]._=r[b]._||[]).push(arguments);if(r[b]._.length==1){l=u.createElement(m),e=u.getElementsByTagName(m)[0],l.async=1,l.src="https://rumble.com/embedJS/u4nnppa"+(arguments[1].video?'.'+arguments[1].video:'')+"/?url="+encodeURIComponent(location.href)+"&args="+encodeURIComponent(JSON.stringify([].slice.apply(arguments))),e.parentNode.insertBefore(l,e)}})}(window, document, "script", "Rumble");
+    </script>
+
+    <nav>
+        <div class="nav-container">
+            <div>
+                <div class="logo">Aşk diz</div>
+                <div class="logo-subtitle">المسلسلات التركية المترجمة</div>
+            </div>
+            <div class="menu-toggle" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">الرئيسية</a>
+                <a href="#series">المسلسلات</a>
+                <a href="#new">الجديد</a>
+                <a href="#popular">الأكثر مشاهدة</a>
+                <a href="#support">دعم الموقع</a>
+                <a href="#contact">تواصل معنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1 class="main-title">Aşk diz</h1>
+        <p class="main-subtitle">شاهد أفضل المسلسلات التركية المترجمة بجودة عالية</p>
+        <span class="header-badge">✨ محدث يومياً</span>
+    </header>
+
+    <div class="container" id="series">
+        <h2 class="section-title">المسلسلات المتاحة</h2>
+        <div class="series-grid" id="seriesGrid"></div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeModal()">×</button>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-title-en" id="modalTitleEn"></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-description" id="modalDescription"></div>
+                <h3 class="episodes-section-title">اختر الحلقة</h3>
+                <div class="episodes-grid" id="episodesGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-player" id="videoPlayer">
+        <div class="video-header">
+            <div class="video-title" id="videoTitle"></div>
+            <button class="close-player" onclick="closePlayer()">✕ إغلاق</button>
+        </div>
+        <div class="video-container">
+            <div id="rumble_player"></div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-links">
+            <a href="#home">الرئيسية</a>
+            <a href="#series">المسلسلات</a>
+            <a href="#support">دعم الموقع</a>
+            <a href="#">سياسة الخصوصية</a>
+        </div>
+        <p class="footer-text">© 2024 Aşk diz - جميع الحقوق محفوظة</p>
+        <p class="footer-text">موقع متخصص في عرض المسلسلات التركية المترجمة للعربية</p>
+    </footer>
+
+    <script>
+        // Series Data - ضع Rumble Video IDs هنا
+        const seriesData = [
+            {
+                id: 1,
+                title: "عشق ودموع",
+                titleEn: "Aşk ve Gözyaşı",
+                image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&h=700&fit=crop",
+                description: "قصة حب رومانسية مؤثرة تدور أحداثها في إسطنبول بين شاب فقير وفتاة من عائلة ثرية. يواجهان العديد من التحديات والصعوبات في سبيل الحفاظ على حبهما رغم معارضة عائلتها ومحاولات التفريق بينهما.",
+                episodes: 45,
+                rating: "9.2",
+                year: "2023",
+                // ضع Rumble Video IDs هنا (مثل: v6z54rg)
+                episodeLinks: {
+                    1: "v6z54rg",  // استبدل بـ Video ID من Rumble
+                    2: "v6z54rg",
+                    3: "v6z54rg",
+                    // أضف باقي الحلقات...
+                }
+            },
+            {
+                id: 2,
+                title: "الحب لا يفهم الكلام",
+                titleEn: "Aşk Laftan Anlamaz",
+                image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=500&h=700&fit=crop",
+                description: "كوميديا رومانسية خفيفة تحكي قصة فتاة بسيطة تعمل في شركة كبيرة وتقع في حب مديرها المتكبر. مسلسل مليء بالمواقف الطريفة والرومانسية.",
+                episodes: 30,
+                rating: "8.8",
+                year: "2022",
+                episodeLinks: {
+                    1: "v6z54rg",
+                }
+            },
+            {
+                id: 3,
+                title: "الطائر المبكر",
+                titleEn: "Erkenci Kuş",
+                image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop",
+                description: "قصة حب جميلة بين مصور محترف وفتاة تحلم بأن تصبح كاتبة. يجمعهما القدر في مواقف طريفة ورومانسية لا تُنسى.",
+                episodes: 51,
+                rating: "9.5",
+                year: "2023",
+                episodeLinks: {
+                    1: "v6z54rg",
+                }
+            },
+            {
+                id: 4,
+                title: "حب أعمى",
+                titleEn: "Kör Aşk",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=700&fit=crop",
+                description: "دراما رومانسية عميقة تتناول قصة حب معقدة بين شخصين من خلفيات مختلفة تماماً.",
+                episodes: 38,
+                rating: "8.6",
+                year: "2023",
+                episodeLinks: {
+                    1: "v6z54rg",
+                }
+            },
+            {
+                id: 5,
+                title: "زهرة الثالوث",
+                titleEn: "Üçüncü Çiçek",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=700&fit=crop",
+                description: "مسلسل درامي يروي قصة ثلاث نساء من أجيال مختلفة وكيف تتشابك حياتهن في قصة مليئة بالعواطف.",
+                episodes: 42,
+                rating: "9.0",
+                year: "2022",
+                episodeLinks: {
+                    1: "v6z54rg",
+                }
+            },
+            {
+                id: 6,
+                title: "قلبي",
+                titleEn: "Kalbim",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&h=700&fit=crop",
+                description: "قصة حب استثنائية تجمع بين الرومانسية والدراما، حيث يكافح البطلان من أجل حبهما ضد كل الصعاب.",
+                episodes: 35,
+                rating: "8.9",
+                year: "2023",
+                episodeLinks: {
+                    1: "v6z54rg",
+                }
+            }
+        ];
+
+        function renderSeries() {
+            const grid = document.getElementById('seriesGrid');
+            grid.innerHTML = seriesData.map(series => `
+                <div class="series-card" onclick="openModal(${series.id})">
+                    <div class="series-image-wrapper">
+                        <img src="${series.image}" alt="${series.title}" class="series-image">
+                        <span class="series-badge">⭐ ${series.rating}</span>
+                    </div>
+                    <div class="series-info">
+                        <h3 class="series-title">${series.title}</h3>
+                        <p class="series-title-en">${series.titleEn}</p>
+                        <div class="series-meta">
+                            <span class="meta-item">📺 ${series.episodes} حلقة</span>
+                            <span class="meta-item">📅 ${series.year}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+        }
+
+        function openModal(seriesId) {
+            const series = seriesData.find(s => s.id === seriesId);
+            if (!series) return;
+
+            document.getElementById('modalTitle').textContent = series.title;
+            document.getElementById('modalTitleEn').textContent = series.titleEn;
+            document.getElementById('modalDescription').textContent = series.description;
+
+            const episodesGrid = document.getElementById('episodesGrid');
+            episodesGrid.innerHTML = '';
+            
+            for (let i = 1; i <= series.episodes; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'episode-btn';
+                btn.textContent = i;
+                btn.onclick = () => playEpisode(seriesId, i);
+                episodesGrid.appendChild(btn);
+            }
+
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Play Episode with Rumble
+        function playEpisode(seriesId, episodeNum) {
+            const series = seriesData.find(s => s.id === seriesId);
+            if (!series) return;
+
+            const videoId = series.episodeLinks[episodeNum] || series.episodeLinks[1];
+            
+            document.getElementById('videoTitle').textContent = `${series.title} - الحلقة ${episodeNum}`;
+            
+            // Clear previous video
+            const rumblePlayer = document.getElementById('rumble_player');
+            rumblePlayer.innerHTML = '';
+            
+            // Create unique div ID for this video
+            const divId = 'rumble_' + videoId + '_' + Date.now();
+            rumblePlayer.innerHTML = `<div id="${divId}"></div>`;
+            
+            // Load Rumble video
+            setTimeout(() => {
+                Rumble("play", {"video": videoId, "div": divId});
+            }, 100);
+            
+            document.getElementById('videoPlayer').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            closeModal();
+        }
+
+        function closePlayer() {
+            const rumblePlayer = document.getElementById('rumble_player');
+            rumblePlayer.innerHTML = '';
+            document.getElementById('videoPlayer').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                closePlayer();
+            }
+        });
+
+        renderSeries();
+    </script>
+</body>
+</html>
