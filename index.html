@@ -74,7 +74,7 @@
             display: flex;
             gap: 20px; 
             align-items: center;
-            position: relative; 
+            position: relative; /* لتموضع العناصر بداخله */
             cursor: pointer;
             z-index: 10;
         }
@@ -84,19 +84,8 @@
             font-weight: 900;
             padding: 0 5px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            /* تم تعديل الانتقال لإضافة لون الحدود */
-            transition: color 0.5s ease-in-out, opacity 0.5s, transform 0.5s, border-color 0.5s, box-shadow 0.5s, padding 0.5s; 
+            transition: color 0.5s ease-in-out, opacity 0.5s, transform 0.5s; 
             user-select: none;
-            display: inline-block; /* ضروري لتطبيق البوردر بشكل صحيح */
-        }
-        
-        /* ستايل المربع الجديد (حول diz) */
-        .word-diz-frame {
-            border: 4px solid var(--primary); 
-            border-radius: 15px;
-            padding: 5px 15px; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            cursor: pointer; /* للإشارة إلى إمكانية النقر للعودة */
         }
         
         /* الألوان المخصصة */
@@ -121,9 +110,18 @@
             user-select: none;
         }
         
-        /* الإطار الأحمر (Frame) - تم تعطيله لأنه لم يعد مستخدماً */
+        /* الإطار الأحمر (Frame) */
         #title-frame {
-            display: none;
+            position: absolute;
+            width: 100%; /* سيتم تعديلها بالـ JS */
+            height: 100%;
+            border: 4px solid var(--primary);
+            border-radius: 20px;
+            transform: scale(0); /* مخفي مبدئياً */
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 5; 
+            box-shadow: 0 0 15px var(--primary), inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         /* ... (باقي ستايلات التنقل وبطاقات المسلسلات والفوتر لم تتغير) ... */
@@ -678,6 +676,11 @@
             height: 100%;
             flex-grow: 1; 
         }
+        
+        /* هذا سيحتوي الآن على الـ iFrame */
+        #rumble_player iframe {
+            display: block;
+        }
 
         .episode-navigation {
             display: flex;
@@ -908,10 +911,7 @@
     </style>
 </head>
 <body>
-    <script>
-        !function(r,u,m,b,l,e){r._Rumble=b,r[b]||(r[b]=function(){(r[b]._=r[b]._||[]).push(arguments);if(r[b]._.length==1){l=u.createElement(m),e=u.getElementsByTagName(m)[0],l.async=1,l.src="https://rumble.com/embedJS/u4nnppa"+(arguments[1].video?'.'+arguments[1].video:'')+"/?url="+encodeURIComponent(location.href)+"&args="+encodeURIComponent(JSON.stringify([].slice.apply(arguments))),e.parentNode.insertBefore(l,e)}})}(window, document, "script", "Rumble");
-    </script>
-
+    
     <nav>
         <div class="nav-container">
             <div class="menu-toggle" onclick="toggleNav()">
@@ -949,7 +949,7 @@
                 <span id="word-diz" class="title-word color-white hidden">Aşk</span>
                 <i class="fas fa-heart hidden" id="clickable-heart" onclick="handleHeartClick(event)"></i>
             </div>
-            <div id="title-frame"></div>
+            <div id="title-frame" onclick="handleFrameClick(event)"></div>
         </div>
         <p class="main-subtitle" style="font-size: 22px; font-weight: 400; margin-top: 15px;">شاهد أفضل المسلسلات التركية المترجمة بجودة عالية</p>
     </header>
@@ -1067,7 +1067,7 @@
                 image: "https://3esk.onl/wp-content/uploads/2025/09/esref-ruya-2.jpg", 
                 description: "انضم أشرف إلى المافيا وأصبح أحد أقوى رجالها، بينما يواصل بحثه لسنوات عن فتاة حلم بها وأسماها رؤيا. يقع في حب نيسان، دون أن يدرك أنها هي نفسها رؤيا، وأنها تعمل سراً كمخبرة للشرطة، ليجد نفسه عالقًا بين الحب والخيانة والصراع على النفوذ. دراما شيقة ومؤثرة جداً تتجاوز حدود التوقعات.",
                 episodes: 21, rating: "9.2", year: "2025",
-                trailerId: "v71cijo", 
+                trailerId: "v6z5ujg", 
                 episodeLinks: { 1: "v6z54rg", 2: "v6z54rg", 3: "v6z54rg", 4: "v6z54rg", 5: "v6z54rg" } 
             },
             {
@@ -1077,7 +1077,7 @@
                 image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=500&h=700&fit=crop",
                 description: "كوميديا رومانسية خفيفة تحكي قصة فتاة بسيطة تعمل في شركة كبيرة وتقع في حب مديرها المتكبر. مسلسل مليء بالمواقف الطريفة والرومانسية والمشاعر المتضاربة.",
                 episodes: 30, rating: "8.8", year: "2022",
-                trailerId: "v6z54rg", 
+                trailerId: "v6y02m4", 
                 episodeLinks: { 1: "v6z54rg", 2: "v6z54rg", 3: "v6z54rg" }
             },
             {
@@ -1087,7 +1087,7 @@
                 image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop",
                 description: "قصة حب جميلة بين مصور محترف وفتاة تحلم بأن تصبح كاتبة. يجمعهما القدر في مواقف طريفة ورومانسية لا تُنسى في عالم الإعلانات.",
                 episodes: 51, rating: "9.5", year: "2023",
-                trailerId: "v6z54rg", 
+                trailerId: "v6y02m4", 
                 episodeLinks: { 1: "v6z54rg", 2: "v6z54rg" }
             }
         ];
@@ -1098,39 +1098,37 @@
         let playerControlsTimeout = null;
         
         // ==========================================================
-        //         منطق حركة العنوان الجديد (Aşk diz) - معدل
+        //         منطق حركة العنوان الجديد (Aşk diz)
         // ==========================================================
 
-        let currentState = 0; // 0: diz Only, 1: Aşk diz Heart
-        let frameClickCount = 0; // عداد للضغطات لتغيير لون المربع
-        
-        // قائمة الألوان للمربع (يمكن تعديلها)
-        const frameColors = ['#E60023', '#FFD700', '#00BFFF', '#ADFF2F']; // أحمر، ذهبي، أزرق، أخضر فاتح
+        let currentState = 0; // 0: Aşk Only, 1: Aşk diz Heart, 2: Aşk diz Frame
 
-        const wordAsk = document.getElementById('word-ask'); // diz
-        const wordDiz = document.getElementById('word-diz'); // Aşk
+        const wordAsk = document.getElementById('word-ask');
+        const wordDiz = document.getElementById('word-diz');
         const clickableHeart = document.getElementById('clickable-heart');
+        const titleFrame = document.getElementById('title-frame');
         const clickableArea = document.getElementById('clickable-area');
-        
+        const mainTitleContainer = document.getElementById('mainTitleContainer');
+
         function initializeTitle() {
-            // الحالة 0: diz (أحمر) فقط، والباقي مخفي
+            // الحالة 0: Aşk (أحمر) فقط، والباقي مخفي
             wordAsk.classList.add('color-primary-red');
-            wordAsk.classList.remove('word-diz-frame'); // إزالة المربع عند التهيئة
-            wordAsk.style.borderColor = 'var(--primary)'; // إعادة اللون الأصلي
             wordAsk.classList.remove('hidden');
             wordDiz.classList.add('hidden');
             clickableHeart.classList.add('hidden');
+            titleFrame.style.transform = 'scale(0)';
+            titleFrame.style.opacity = '0';
             
-            // تهيئة النقر
+            // تهيئة النقر (أضف النقر على Aşk في الحالة 0)
             clickableArea.onclick = handleAskClick;
-            wordAsk.onclick = null; // إزالة النقر على diz
+            titleFrame.onclick = handleFrameClick;
         }
         
-        // الانتقال من الحالة 0 إلى 1 (النقر على diz)
+        // الانتقال من الحالة 0 إلى 1 (النقر على Aşk)
         function handleAskClick() {
             if (currentState !== 0) return;
             
-            // 1. إظهار Aşk والقلب
+            // 1. إظهار diz والقلب
             wordDiz.classList.remove('hidden');
             clickableHeart.classList.remove('hidden');
 
@@ -1141,51 +1139,74 @@
             clickableArea.onclick = null;
         }
 
-        // الانتقال وتغيير اللون (النقر على القلب)
+        // الانتقال من الحالة 1 إلى 2 (النقر على القلب)
         function handleHeartClick(event) {
             if (currentState !== 1) return;
             
             // منع النقر من الوصول إلى العناصر الخلفية
             event.stopPropagation();
             
-            // 1. تطبيق ستايل المربع على كلمة diz (word-ask)
-            wordAsk.classList.add('word-diz-frame');
+            // 1. إخفاء القلب
+            clickableHeart.classList.add('hidden');
             
-            // 2. تغيير لون المربع (border-color) بالتسلسل
-            const currentColor = frameColors[frameClickCount % frameColors.length];
-            wordAsk.style.borderColor = currentColor;
+            // 2. تفعيل الإطار (Frame) حول الكلمات
+            // نحتاج لحساب حجم وموقع الإطار ليحيط بـ "Aşk diz"
             
-            // 3. زيادة عداد الضغطات
-            frameClickCount++;
+            // الانتظار قليلاً لانتهاء انتقال إظهار diz
+            setTimeout(() => {
+                const areaRect = clickableArea.getBoundingClientRect();
+                const containerRect = mainTitleContainer.getBoundingClientRect();
+                
+                const padding = 15; 
+                const frameWidth = areaRect.width + padding * 2;
+                const frameHeight = areaRect.height + padding * 2;
 
-            // 4. تفعيل النقر على diz نفسها للعودة إلى البداية
-            wordAsk.onclick = handleDizClick;
+                // حساب موقع الإطار بالنسبة لمركز الحاوية الرئيسية
+                const frameCenterX = areaRect.left + areaRect.width / 2 - containerRect.left;
+                const frameCenterY = areaRect.top + areaRect.height / 2 - containerRect.top;
+
+                titleFrame.style.width = `${frameWidth}px`;
+                titleFrame.style.height = `${frameHeight}px`;
+                titleFrame.style.top = `${frameCenterY}px`;
+                titleFrame.style.left = `${frameCenterX}px`;
+                
+                // تطبيق التحول للعرض
+                titleFrame.style.transform = `translate(-50%, -50%) scale(1)`;
+                titleFrame.style.opacity = '1';
+                
+                // 3. تحديث الحالة
+                currentState = 2;
+                
+                // 4. تفعيل النقر على الإطار نفسه للعودة
+                titleFrame.style.cursor = 'pointer';
+
+            }, 50); // تأخير بسيط لضمان دقة الحسابات بعد إظهار diz
         }
 
-        // العودة إلى الحالة 0 (النقر على diz بالمربع)
-        function handleDizClick() {
-            if (currentState !== 1) return;
-
-            // 1. إخفاء Aşk والقلب
-            wordDiz.classList.add('hidden');
-            clickableHeart.classList.add('hidden');
-
-            // 2. إزالة ستايل المربع وإعادة تعيين اللون
-            wordAsk.classList.remove('word-diz-frame');
-            wordAsk.style.borderColor = 'var(--primary)';
-            wordAsk.onclick = null;
+        // الانتقال من الحالة 2 إلى 0 (النقر على الإطار)
+        function handleFrameClick(event) {
+            if (currentState !== 2) return;
             
-            // 3. تحديث الحالة وإعادة تفعيل النقر على المنطقة للبدء من جديد
+            // 1. إخفاء الإطار
+            titleFrame.style.transform = 'translate(-50%, -50%) scale(0)';
+            titleFrame.style.opacity = '0';
+            titleFrame.style.cursor = 'default';
+
+            // 2. إخفاء diz
+            wordDiz.classList.add('hidden');
+            
+            // 3. تحديث الحالة
             currentState = 0;
+            
+            // 4. إعادة تفعيل النقر على Aşk للبدء من جديد
             clickableArea.onclick = handleAskClick;
-            frameClickCount = 0; // تصفير العداد
         }
 
         window.addEventListener('load', initializeTitle);
 
 
         // ==========================================================
-        //         باقي الوظائف (لم تتغير)
+        //         باقي الوظائف (تم تعديل playVideo)
         // ==========================================================
         
         function renderSeries() {
@@ -1343,6 +1364,10 @@
             }, 1000);
         }
         
+        // ==========================================================
+        //         الدالة المعدلة playVideo (باستخدام iFrame)
+        // ==========================================================
+
         function playVideo(series, videoId, title) {
             currentPlayingSeriesId = series.id;
             currentPlayingVideoId = videoId; 
@@ -1350,14 +1375,48 @@
             document.getElementById('videoTitle').textContent = title;
             document.getElementById('currentEpisodeNumDisplay').textContent = ''; 
             
-            const rumblePlayer = document.getElementById('rumble_player');
-            rumblePlayer.innerHTML = '';
+            // 1. معالجة DOM: إزالة العنصر القديم وإضافة عنصر جديد نظيف
+            const videoContainer = document.querySelector('.video-container');
+            const oldRumblePlayer = document.getElementById('rumble_player');
+            const episodeNavigation = document.querySelector('.episode-navigation');
+
+            if (oldRumblePlayer) {
+                // إزالة المشغل القديم بالكامل
+                oldRumblePlayer.remove();
+            }
             
-            Rumble("play", { video: videoId, div: "rumble_player", autoplay: 1 });
+            // إنشاء div جديد بـ ID "rumble_player"
+            const newRumblePlayer = document.createElement('div');
+            newRumblePlayer.id = 'rumble_player';
+            newRumblePlayer.style.width = '100%';
+            newRumblePlayer.style.height = '100%';
+            
+            // إدراج العنصر الجديد قبل شريط التنقل
+            videoContainer.insertBefore(newRumblePlayer, episodeNavigation);
+            
+            // 2. التضمين باستخدام iFrame
+            // معرف الناشر (pub) هو u4nnppa، والمستخرج من كود التضمين الذي كان موجوداً
+            const publisherId = 'u4nnppa'; 
+            // يتم إنشاء رابط التضمين مباشرة من الـ videoId
+            const iframeSrc = `https://rumble.com/embed/${videoId}/?pub=${publisherId}&autoplay=true`;
+
+            newRumblePlayer.innerHTML = `
+                <iframe 
+                    class="rumble" 
+                    width="100%" 
+                    height="100%" 
+                    src="${iframeSrc}" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen"
+                    allowfullscreen>
+                </iframe>
+            `;
             
             document.getElementById('videoPlayer').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
+        
+        // ==========================================================
         
         function playEpisode(seriesId, episodeNum) {
             const series = seriesData.find(s => s.id === seriesId);
@@ -1393,6 +1452,8 @@
         function closePlayer() {
             document.getElementById('videoPlayer').style.display = 'none';
             document.body.style.overflow = 'auto';
+            
+            // مسح محتوى المشغل لضمان إيقاف الـ iFrame
             document.getElementById('rumble_player').innerHTML = ''; 
             currentPlayingSeriesId = null;
             currentPlayingEpisodeNum = null;
@@ -1442,4 +1503,4 @@
         document.getElementById('nextEpisodeBtn').onclick = () => navigateEpisode(1);
     </script>
 </body>
-    </html>
+                                                        </html>
