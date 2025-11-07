@@ -16,21 +16,21 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
         }
 
         :root {
-            --primary: #CC3366; /* أحمر وردي داكن (Rosewood) - لون رومانسي فاخر */
+            --primary: #E60023; /* أحمر ساطع */
             --primary-light: #FFD700; /* ذهبي براق للتفاصيل والأيقونات */
-            --secondary: #0a0a0a; /* أسود عميق للمشغل والخلفيات الداكنة */
-            --bg-body: #121212; /* خلفية الموقع الرئيسية (أسود داكن) */
-            --bg-card: #1e1e1e; /* خلفية البطاقات (رمادي داكن) */
-            --text-dark: #e0e0e0; /* نص فاتح للخلفيات الداكنة */
-            --text-light: #ffffff; /* نص أبيض ناصع */
-            --text-gray: #b0b0b0; /* نص رمادي فاتح */
+            --secondary: #0a0a0a; 
+            --bg-body: #121212; 
+            --bg-card: #1e1e1e; 
+            --text-dark: #e0e0e0; 
+            --text-light: #ffffff; 
+            --text-gray: #b0b0b0; 
             --card-radius: 15px; 
             --shadow-subtle: rgba(0, 0, 0, 0.4);
-            --shadow-focus: rgba(204, 51, 102, 0.6);
+            --shadow-focus: rgba(230, 0, 35, 0.6); 
         }
 
         body {
@@ -48,9 +48,89 @@
         button { cursor: pointer; border: none; background: none; }
         
         /* ================================================= */
-        /* 2. شريط التنقل (Navigation) - زر القائمة لليسار  */
+        /* 3. الهيدر وتأثير العنوان المتحرك (التعديلات هنا)  */
         /* ================================================= */
 
+        header {
+            background: #000; /* الخلفية السوداء */
+            color: white;
+            text-align: center;
+            padding: 180px 40px 130px; 
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+        
+        .main-title-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            position: relative; 
+            max-width: 900px;
+            margin: 0 auto;
+            height: 90px;
+        }
+
+        #clickable-area {
+            display: flex;
+            gap: 20px; 
+            align-items: center;
+            position: relative; 
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .title-word {
+            font-size: 64px;
+            font-weight: 900;
+            padding: 0 5px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            /* تم تعديل الانتقال لإضافة لون الحدود */
+            transition: color 0.5s ease-in-out, opacity 0.5s, transform 0.5s, border-color 0.5s, box-shadow 0.5s, padding 0.5s; 
+            user-select: none;
+            display: inline-block; /* ضروري لتطبيق البوردر بشكل صحيح */
+        }
+        
+        /* ستايل المربع الجديد (حول diz) */
+        .word-diz-frame {
+            border: 4px solid var(--primary); 
+            border-radius: 15px;
+            padding: 5px 15px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer; /* للإشارة إلى إمكانية النقر للعودة */
+        }
+        
+        /* الألوان المخصصة */
+        .color-primary-red { color: var(--primary) !important; }
+        .color-white { color: white !important; }
+        
+        /* إخفاء العنصر */
+        .hidden { 
+            opacity: 0 !important; 
+            visibility: hidden !important;
+            pointer-events: none !important;
+            transform: scale(0.8) !important;
+        }
+
+        /* القلب */
+        #clickable-heart {
+            font-size: 64px; 
+            color: var(--primary); /* دائماً أحمر */
+            cursor: pointer;
+            margin-right: -10px; /* لسحبه قليلاً لليسار مع diz */
+            transition: all 0.4s ease-in-out;
+            user-select: none;
+        }
+        
+        /* الإطار الأحمر (Frame) - تم تعطيله لأنه لم يعد مستخدماً */
+        #title-frame {
+            display: none;
+        }
+
+        /* ... (باقي ستايلات التنقل وبطاقات المسلسلات والفوتر لم تتغير) ... */
+        
+        /* ================================================= */
+        /* 2. شريط التنقل (Navigation) */
+        /* ================================================= */
         nav {
             background: var(--bg-card);
             box-shadow: 0 2px 10px var(--shadow-subtle);
@@ -95,7 +175,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
-        /* زر الهمبرغر */
         .menu-toggle {
             display: none; 
             flex-direction: column;
@@ -118,23 +197,8 @@
         }
         
         /* ================================================= */
-        /* 3. الهيدر والكونتينر (Header & Container)        */
+        /* 4. أقسام الصفحة (Section Styles)                 */
         /* ================================================= */
-
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, #a0204d 100%);
-            color: white;
-            text-align: center;
-            padding: 130px 40px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-        }
-        
-        .main-title {
-            font-size: 64px;
-            font-weight: 900;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
         
         .container {
             max-width: 1440px; 
@@ -152,9 +216,7 @@
             display: inline-flex;
         }
         
-        /* ================================================= */
-        /* 4. بطاقات المسلسلات (Series Cards) - شكل القلب   */
-        /* ================================================= */
+        /* ... (ستايلات البطاقات والمودال والمشغل) ... */
         
         .series-grid {
             display: grid;
@@ -181,7 +243,6 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
         
-        /* حاوية القلب والأشياء الأخرى... */
         .heart-shape-wrapper {
             position: relative;
             width: 90%; 
@@ -294,25 +355,24 @@
         }
         
         /* ================================================= */
-        /* 5. النافذة المنبثقة للتفاصيل (Details Modal) *جديد* */
+        /* 5. النافذة المنبثقة للتفاصيل (Details Modal)      */
         /* ================================================= */
 
         .details-modal-overlay {
-            /* تعديلات لتعمل كـ Modal تفتح فوق كل شيء */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85); /* تعتيم الخلفية */
-            z-index: 2000; /* يجب أن تكون فوق كل شيء ما عدا المشغل */
-            display: none; /* إخفاؤها افتراضياً */
+            background: rgba(0, 0, 0, 0.85); 
+            z-index: 2000; 
+            display: none; 
             justify-content: center;
             align-items: center;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease-in-out;
-            overflow-y: auto; /* للسماح بالتمرير داخل النافذة */
+            overflow-y: auto; 
         }
 
         .details-modal-overlay.active {
@@ -322,14 +382,13 @@
         }
 
         .details-page {
-            /* محتوى الـ Modal */
             background: var(--bg-body);
             width: 90%;
             max-width: 1200px;
-            max-height: 90vh; /* لضمان ترك مساحة في الشاشة */
+            max-height: 90vh; 
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            overflow: hidden; /* مهم للاطراف الدائرية */
+            overflow: hidden; 
             transform: scale(0.9);
             transition: transform 0.4s ease-in-out;
             margin: 20px 0;
@@ -340,7 +399,6 @@
         }
 
         .details-content {
-            /* التأكد من أن التمرير يعمل داخل الصفحة الداخلية */
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -354,6 +412,18 @@
             padding: 30px;
             box-shadow: inset 0 -100px 50px rgba(0, 0, 0, 0.9);
         }
+        
+        .details-backdrop-container {
+            position: absolute;
+            top: 20px; 
+            left: 20px;
+            right: 20px;
+            bottom: 20px; 
+            border-radius: 15px; 
+            overflow: hidden;
+            box-shadow: 0 0 0 5px var(--primary), 0 0 0 10px rgba(230, 0, 35, 0.4); 
+        }
+        
         .details-backdrop {
             position: absolute;
             top: 0;
@@ -362,9 +432,55 @@
             height: 100%;
             background-size: cover;
             background-position: center;
-            /* ******* التعديل المطلوب: تم تخفيف الضبابية إلى 5px ******* */
-            filter: **blur(5px)** brightness(0.4); 
-            opacity: 0.9;
+            filter: blur(2px) brightness(0.7); 
+            opacity: 1;
+            transition: all 0.5s ease; 
+        }
+
+        @keyframes rain-effect {
+            0% { top: -100px; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: calc(100% + 100px); opacity: 0; }
+        }
+        
+        .details-backdrop-container::after,
+        .details-backdrop-container::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            width: 2px; 
+            height: 2px;
+            background: transparent;
+            z-index: 5;
+            opacity: 0;
+        }
+        
+        .details-backdrop-container::after {
+            box-shadow: 
+                100px 0px 0 var(--primary-light),
+                150px 200px 0 var(--primary),
+                300px 400px 0 var(--primary-light),
+                450px 100px 0 var(--primary),
+                600px 500px 0 var(--primary-light),
+                800px 100px 0 var(--primary),
+                950px 300px 0 var(--primary-light),
+                1000px 700px 0 var(--primary),
+                1200px 200px 0 var(--primary-light);
+            animation: rain-effect 4s linear infinite; 
+            animation-delay: 0s; 
+        }
+        .details-backdrop-container::before {
+            box-shadow: 
+                50px 0px 0 var(--primary),
+                250px 600px 0 var(--primary-light),
+                400px 100px 0 var(--primary),
+                550px 400px 0 var(--primary-light),
+                700px 200px 0 var(--primary),
+                850px 650px 0 var(--primary-light),
+                1100px 300px 0 var(--primary);
+            animation: rain-effect 4s linear infinite; 
+            animation-delay: 2s; 
         }
 
         .details-info { position: relative; z-index: 10; color: var(--text-light); }
@@ -372,7 +488,7 @@
         .details-title-en { color: var(--text-gray); }
         
         .close-details-btn {
-            position: absolute; /* وضعه في الزاوية */
+            position: absolute; 
             top: 20px;
             left: 20px;
             z-index: 100;
@@ -391,15 +507,25 @@
         .details-body {
             background: var(--bg-body);
             padding: 50px 70px;
-            margin-top: 0; /* تم إزالة الهامش السالب */
+            margin-top: 0; 
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
         }
 
+        .trailer-section {
+            display: flex;
+            align-items: flex-start; 
+            gap: 30px; 
+            margin-bottom: 40px;
+        }
+        .details-description-wrapper {
+            flex-grow: 1; 
+        }
+        
         .details-description {
             color: var(--text-gray);
             border-right: 5px solid var(--primary);
             padding-right: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 0; 
         }
 
         .episodes-section-title {
@@ -414,7 +540,6 @@
             margin-top: 30px;
         }
         
-        /* أزرار الحلقات داخل القلب (السمة الداكنة) - الأصلية لفتح المشغل */
         .episode-btn-wrapper {
             position: relative;
             width: 80px; 
@@ -426,7 +551,6 @@
         }
 
         .episode-btn {
-            /* تصميم أزرار الحلقات (التي سيتم تقليدها) */
             position: absolute;
             z-index: 5;
             font-size: 20px;
@@ -458,8 +582,42 @@
             font-size: 85px;
         }
         
+        #trailerBtnWrapper {
+            margin: 0; 
+        }
+        #trailerBtnWrapper .episode-heart-bg {
+            color: var(--primary); 
+            opacity: 0.15;
+            font-size: 105px !important; 
+        }
+        
+        #trailerBtnWrapper .episode-heart {
+            display: none;
+        }
+        
+        #trailerBtnWrapper .episode-btn {
+            background: var(--primary); 
+            border-radius: 50%; 
+            color: var(--primary-light); 
+            border: 3px solid var(--primary-light);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            width: 85px !important; 
+            height: 85px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px !important;
+        }
+        #trailerBtnWrapper .episode-btn:hover {
+            background: var(--primary-light); 
+            color: var(--primary);
+            transform: translate(-50%, -50%) scale(1.05); 
+        }
+        
         /* ================================================= */
-        /* 6. مشغل الفيديو (Video Player) - أزرار التحكم  */
+        /* 6. مشغل الفيديو (Video Player) */
         /* ================================================= */
 
         .video-player {
@@ -485,7 +643,6 @@
         .player-settings { color: var(--text-gray); }
         .player-setting-item:hover { color: var(--primary-light); }
 
-        /* تعديل زر الإغلاق (X) في المشغل */
         .close-player {
             background: var(--primary);
             color: var(--primary-light);
@@ -505,7 +662,6 @@
             color: var(--secondary);
             transform: scale(1.1);
         }
-        /* إزالة نص "إغلاق" والاكتفاء بالـ X */
         .close-player i { margin: 0; }
         
         .video-container {
@@ -514,31 +670,29 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            flex-direction: column; /* لجعل محتوى المشغل عمودياً */
+            flex-direction: column; 
         }
         
         #rumble_player {
             width: 100%;
             height: 100%;
-            flex-grow: 1; /* للسماح للمشغل باستهلاك المساحة المتبقية */
+            flex-grow: 1; 
         }
 
-        /* حاوية أزرار التنقل (الحلقة السابقة/التالية) تحت الفيديو */
         .episode-navigation {
             display: flex;
             justify-content: center;
-            gap: 20px; /* مسافة بين الزرين */
+            gap: 20px; 
             padding: 15px 40px;
             width: 100%;
             background: var(--bg-card);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* تصميم زر التنقل (مشابه لستايل أزرار الحلقات/القلب) */
         .nav-episode-btn {
             min-width: 150px;
             padding: 10px 20px;
-            border-radius: 50px; /* شكل دائري قليلاً */
+            border-radius: 50px; 
             background: var(--primary); 
             color: var(--primary-light);
             font-size: 18px;
@@ -559,7 +713,6 @@
             box-shadow: 0 6px 15px var(--shadow-focus);
         }
 
-        /* الأزرار العائمة القديمة في المشغل (تم إخفاؤها) */
         .player-nav-buttons,
         .player-episode-info {
             display: none !important;
@@ -586,7 +739,7 @@
         }
         
         /* ================================================= */
-        /* 8. زر العودة للأعلى (FAB) - تعديل المظهر والشكل  */
+        /* 8. زر العودة للأعلى (FAB) */
         /* ================================================= */
 
         #scrollToTopBtn {
@@ -594,14 +747,14 @@
             bottom: 30px;
             right: 30px;
             z-index: 999;
-            width: 55px; /* زيادة الحجم */
-            height: 55px; /* زيادة الحجم */
+            width: 55px; 
+            height: 55px; 
             border-radius: 50%;
             background: var(--primary);
             color: var(--primary-light);
-            border: 3px solid var(--primary-light); /* إضافة حدود لجذب الانتباه */
-            font-size: 22px; /* تكبير الأيقونة */
-            display: none; /* يتم التحكم بها بالـ JS */
+            border: 3px solid var(--primary-light); 
+            font-size: 22px; 
+            display: none; 
             justify-content: center;
             align-items: center;
             box-shadow: 0 4px 12px var(--shadow-focus);
@@ -627,24 +780,9 @@
         }
 
         /* ================================================= */
-        /* 9. القائمة الجانبية (Sidebar) مع روابط التواصل *معدّل* */
+        /* 9. القائمة الجانبية (Sidebar) */
         /* ================================================= */
 
-        /* تعديل الـ nav-links ليصبح الـ Sidebar */
-        .nav-links {
-            /* إعدادات سطح المكتب */
-            display: flex; /* لسطح المكتب */
-            gap: 25px;
-            align-items: center;
-            flex-direction: row; /* لسطح المكتب */
-            position: static; /* لسطح المكتب */
-            width: auto;
-            height: auto;
-            background: none;
-            box-shadow: none;
-        }
-        
-        /* إخفاء قسم التواصل الاجتماعي على سطح المكتب */
         .social-support-links {
             display: none;
         }
@@ -654,7 +792,6 @@
             .logo { font-size: 30px; }
             .menu-toggle { display: flex !important; }
 
-            /* إعدادات القائمة الجانبية (Sidebar) على الهاتف */
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -664,25 +801,24 @@
                 background: var(--bg-card);
                 flex-direction: column;
                 padding: 75px 15px 15px;
-                display: flex; /* تفعيل flex لإظهارها لاحقاً */
+                display: flex; 
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
                 transition: transform 0.4s ease-out;
                 z-index: 999;
                 text-align: right;
             }
             .nav-links.active {
-                transform: translateX(-250px); /* تحريكها لليسار (باتجاه اليمين في لغة RTL) */
+                transform: translateX(-250px); 
             }
             .nav-links a { width: 100%; text-align: right; color: var(--text-dark); }
             .nav-links a:hover { color: var(--text-light); }
 
-            /* إظهار قسم التواصل الاجتماعي في الـ Sidebar على الهاتف */
             .social-support-links {
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
                 padding: 20px 0;
-                margin-top: auto; /* دفعها للأسفل */
+                margin-top: auto; 
                 border-top: 1px solid var(--text-gray);
             }
             .social-support-links h4 {
@@ -720,7 +856,6 @@
             
             .series-card { min-height: 400px; }
             
-            /* تعديلات الـ Modal على الهاتف */
             .details-modal-overlay { align-items: flex-start; }
             .details-page { 
                 width: 100%; 
@@ -730,9 +865,29 @@
                 border-radius: 0;
             }
             .details-header { height: 350px; padding: 30px; }
+            
+            .details-backdrop-container {
+                top: 10px; 
+                left: 10px;
+                right: 10px;
+                bottom: 10px; 
+                box-shadow: 0 0 0 3px var(--primary), 0 0 0 6px rgba(230, 0, 35, 0.4);
+            }
+            
             .details-title { font-size: 34px; }
             .details-body { padding: 30px 20px; margin-top: 0; }
             .close-details-btn { top: 15px; left: 15px; width: 35px; height: 35px; font-size: 16px; }
+            
+            .trailer-section {
+                flex-direction: column; 
+                align-items: center; 
+                gap: 20px;
+            }
+            .details-description-wrapper {
+                text-align: right;
+                padding-right: 0;
+                border-right: none;
+            }
 
             .episode-btn-wrapper { width: 70px; height: 70px; }
             .episode-heart { font-size: 70px; }
@@ -743,7 +898,7 @@
             .close-player { 
                 width: 35px; 
                 height: 35px; 
-                position: absolute; /* وضعه في الزاوية العلوية اليمنى في الـ header */
+                position: absolute; 
                 top: 10px;
                 left: 10px;
             }
@@ -788,7 +943,14 @@
     </nav>
 
     <header id="home">
-        <h1 class="main-title">Aşk diz</h1>
+        <div class="main-title-container" id="mainTitleContainer">
+            <div id="clickable-area">
+                <span id="word-ask" class="title-word color-primary-red">diz</span>
+                <span id="word-diz" class="title-word color-white hidden">Aşk</span>
+                <i class="fas fa-heart hidden" id="clickable-heart" onclick="handleHeartClick(event)"></i>
+            </div>
+            <div id="title-frame"></div>
+        </div>
         <p class="main-subtitle" style="font-size: 22px; font-weight: 400; margin-top: 15px;">شاهد أفضل المسلسلات التركية المترجمة بجودة عالية</p>
     </header>
 
@@ -807,9 +969,11 @@
                 <button class="close-details-btn" onclick="closeDetailsPage()">
                     <i class="fas fa-times"></i>
                 </button>
-
+                
                 <div class="details-header" id="detailsHeader">
-                    <div class="details-backdrop" id="detailsBackdrop"></div>
+                    <div class="details-backdrop-container">
+                        <div class="details-backdrop" id="detailsBackdrop"></div>
+                    </div>
                     <div class="details-info">
                         <h1 class="details-title" id="detailsTitle"></h1>
                         <p class="details-title-en" id="detailsTitleEn"></p>
@@ -818,7 +982,21 @@
 
                 <div class="details-body">
                     <h3 class="episodes-section-title"><i class="fas fa-info-circle" style="color: var(--primary);"></i> ملخص المسلسل</h3>
-                    <div class="details-description" id="detailsDescription"></div>
+                    
+                    <div class="trailer-section">
+                        <div class="details-description-wrapper">
+                             <div class="details-description" id="detailsDescription"></div>
+                        </div>
+                        
+                        <div class="episode-btn-wrapper" id="trailerBtnWrapper" style="display: none; width: 100px; height: 100px;">
+                            <i class="fas fa-heart episode-heart-bg" ></i>
+                            <i class="fas fa-heart episode-heart" ></i> 
+                            <button class="episode-btn" id="trailerButton">
+                                <i class="fas fa-play" style="font-size: 24px;"></i>
+                                <span>تريلر</span>
+                            </button>
+                        </div>
+                    </div>
                     
                     <h3 class="episodes-section-title"><i class="fas fa-heart" style="color: var(--primary-light);"></i> اختر الحلقة (قلوب)</h3>
                     <div class="episodes-grid" id="episodesGrid"></div>
@@ -875,12 +1053,12 @@
                 <a href="#series" style="color: var(--primary-light);">المسلسلات</a>
                 <a href="#" style="color: var(--primary-light);">سياسة الخصوصية</a>
             </div>
-            <p class="footer-text">© 2024 Aşk diz - جميع الحقوق محفوظة</p>
+            <p class="footer-text">© 2025 Aşk diz - جميع الحقوق محفوظة</p>
         </div>
     </footer>
 
     <script>
-        // Series Data
+        // Series Data (لم تتغير)
         const seriesData = [
             {
                 id: 1,
@@ -889,7 +1067,8 @@
                 image: "https://3esk.onl/wp-content/uploads/2025/09/esref-ruya-2.jpg", 
                 description: "انضم أشرف إلى المافيا وأصبح أحد أقوى رجالها، بينما يواصل بحثه لسنوات عن فتاة حلم بها وأسماها رؤيا. يقع في حب نيسان، دون أن يدرك أنها هي نفسها رؤيا، وأنها تعمل سراً كمخبرة للشرطة، ليجد نفسه عالقًا بين الحب والخيانة والصراع على النفوذ. دراما شيقة ومؤثرة جداً تتجاوز حدود التوقعات.",
                 episodes: 21, rating: "9.2", year: "2025",
-                episodeLinks: { 1: "v6z54rg", 2: "v6z54rg", 3: "v6z54rg", 4: "v6z54rg", 5: "v6z54rg" } // تم زيادة الحلقات للتجربة
+                trailerId: "v6z54rg", 
+                episodeLinks: { 1: "v6z54rg", 2: "v6z54rg", 3: "v6z54rg", 4: "v6z54rg", 5: "v6z54rg" } 
             },
             {
                 id: 2,
@@ -898,6 +1077,7 @@
                 image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=500&h=700&fit=crop",
                 description: "كوميديا رومانسية خفيفة تحكي قصة فتاة بسيطة تعمل في شركة كبيرة وتقع في حب مديرها المتكبر. مسلسل مليء بالمواقف الطريفة والرومانسية والمشاعر المتضاربة.",
                 episodes: 30, rating: "8.8", year: "2022",
+                trailerId: "v6z54rg", 
                 episodeLinks: { 1: "v6z54rg", 2: "v6z54rg", 3: "v6z54rg" }
             },
             {
@@ -907,14 +1087,107 @@
                 image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=700&fit=crop",
                 description: "قصة حب جميلة بين مصور محترف وفتاة تحلم بأن تصبح كاتبة. يجمعهما القدر في مواقف طريفة ورومانسية لا تُنسى في عالم الإعلانات.",
                 episodes: 51, rating: "9.5", year: "2023",
+                trailerId: "v6z54rg", 
                 episodeLinks: { 1: "v6z54rg", 2: "v6z54rg" }
             }
         ];
         
         let currentPlayingSeriesId = null;
         let currentPlayingEpisodeNum = null;
+        let currentPlayingVideoId = null; 
         let playerControlsTimeout = null;
+        
+        // ==========================================================
+        //         منطق حركة العنوان الجديد (Aşk diz) - معدل
+        // ==========================================================
 
+        let currentState = 0; // 0: diz Only, 1: Aşk diz Heart
+        let frameClickCount = 0; // عداد للضغطات لتغيير لون المربع
+        
+        // قائمة الألوان للمربع (يمكن تعديلها)
+        const frameColors = ['#E60023', '#FFD700', '#00BFFF', '#ADFF2F']; // أحمر، ذهبي، أزرق، أخضر فاتح
+
+        const wordAsk = document.getElementById('word-ask'); // diz
+        const wordDiz = document.getElementById('word-diz'); // Aşk
+        const clickableHeart = document.getElementById('clickable-heart');
+        const clickableArea = document.getElementById('clickable-area');
+        
+        function initializeTitle() {
+            // الحالة 0: diz (أحمر) فقط، والباقي مخفي
+            wordAsk.classList.add('color-primary-red');
+            wordAsk.classList.remove('word-diz-frame'); // إزالة المربع عند التهيئة
+            wordAsk.style.borderColor = 'var(--primary)'; // إعادة اللون الأصلي
+            wordAsk.classList.remove('hidden');
+            wordDiz.classList.add('hidden');
+            clickableHeart.classList.add('hidden');
+            
+            // تهيئة النقر
+            clickableArea.onclick = handleAskClick;
+            wordAsk.onclick = null; // إزالة النقر على diz
+        }
+        
+        // الانتقال من الحالة 0 إلى 1 (النقر على diz)
+        function handleAskClick() {
+            if (currentState !== 0) return;
+            
+            // 1. إظهار Aşk والقلب
+            wordDiz.classList.remove('hidden');
+            clickableHeart.classList.remove('hidden');
+
+            // 2. تحديث الحالة
+            currentState = 1;
+
+            // 3. تعطيل النقر على المنطقة ككل والسماح بالنقر على القلب
+            clickableArea.onclick = null;
+        }
+
+        // الانتقال وتغيير اللون (النقر على القلب)
+        function handleHeartClick(event) {
+            if (currentState !== 1) return;
+            
+            // منع النقر من الوصول إلى العناصر الخلفية
+            event.stopPropagation();
+            
+            // 1. تطبيق ستايل المربع على كلمة diz (word-ask)
+            wordAsk.classList.add('word-diz-frame');
+            
+            // 2. تغيير لون المربع (border-color) بالتسلسل
+            const currentColor = frameColors[frameClickCount % frameColors.length];
+            wordAsk.style.borderColor = currentColor;
+            
+            // 3. زيادة عداد الضغطات
+            frameClickCount++;
+
+            // 4. تفعيل النقر على diz نفسها للعودة إلى البداية
+            wordAsk.onclick = handleDizClick;
+        }
+
+        // العودة إلى الحالة 0 (النقر على diz بالمربع)
+        function handleDizClick() {
+            if (currentState !== 1) return;
+
+            // 1. إخفاء Aşk والقلب
+            wordDiz.classList.add('hidden');
+            clickableHeart.classList.add('hidden');
+
+            // 2. إزالة ستايل المربع وإعادة تعيين اللون
+            wordAsk.classList.remove('word-diz-frame');
+            wordAsk.style.borderColor = 'var(--primary)';
+            wordAsk.onclick = null;
+            
+            // 3. تحديث الحالة وإعادة تفعيل النقر على المنطقة للبدء من جديد
+            currentState = 0;
+            clickableArea.onclick = handleAskClick;
+            frameClickCount = 0; // تصفير العداد
+        }
+
+        window.addEventListener('load', initializeTitle);
+
+
+        // ==========================================================
+        //         باقي الوظائف (لم تتغير)
+        // ==========================================================
+        
         function renderSeries() {
             const grid = document.getElementById('seriesGrid');
             grid.innerHTML = seriesData.map(series => `
@@ -939,11 +1212,9 @@
             `).join('');
         }
         
-        // تشغيل عرض المسلسلات عند تحميل الصفحة
         window.onload = renderSeries;
 
 
-        // 1. تعديل وظيفة الهمبرغر والقائمة الجانبية 
         function toggleNav() {
             const navLinks = document.getElementById('navLinks');
             const menuToggle = document.querySelector('.menu-toggle');
@@ -951,7 +1222,6 @@
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
             
-            // التحكم في التمرير عند فتح القائمة الجانبية
             if (navLinks.classList.contains('active')) {
                  document.body.style.overflow = 'hidden';
             } else {
@@ -968,23 +1238,19 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- وظائف زر العائم (FAB) ---
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         window.onscroll = function() {
             const btn = document.getElementById('scrollToTopBtn');
-            // تأكد من إضافة CSS لـ #scrollToTopBtn
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                // نستخدم class.add/remove للتحكم في الأوباسيتي والـ transform في الـ CSS
                 btn.classList.add('visible'); 
             } else {
                 btn.classList.remove('visible');
             }
         };
 
-        // 2. تعديل وظائف النافذة المنبثقة للتفاصيل (Modal)
         function openDetailsPage(seriesId) {
             const series = seriesData.find(s => s.id === seriesId);
             if (!series) return;
@@ -993,6 +1259,8 @@
             const detailsBackdrop = document.getElementById('detailsBackdrop');
             const detailsHeader = document.getElementById('detailsHeader');
             const episodesGrid = document.getElementById('episodesGrid');
+            const trailerBtnWrapper = document.getElementById('trailerBtnWrapper');
+            const trailerButton = document.getElementById('trailerButton'); 
 
             detailsBackdrop.style.backgroundImage = `url('${series.image}')`;
             detailsHeader.style.backgroundImage = `url('${series.image}')`;
@@ -1000,6 +1268,14 @@
             document.getElementById('detailsTitle').textContent = series.title;
             document.getElementById('detailsTitleEn').textContent = series.titleEn;
             document.getElementById('detailsDescription').textContent = series.description;
+            
+            if (series.trailerId) {
+                trailerBtnWrapper.style.display = 'flex';
+                trailerButton.onclick = () => showLoadingAndPlay(seriesId, 0); 
+            } else {
+                trailerBtnWrapper.style.display = 'none';
+            }
+
 
             episodesGrid.innerHTML = '';
             for (let i = 1; i <= series.episodes; i++) {
@@ -1024,10 +1300,9 @@
                 episodesGrid.appendChild(wrapper);
             }
             
-            // تفعيل النافذة المنبثقة
             modalOverlay.style.display = 'flex';
             setTimeout(() => { modalOverlay.classList.add('active'); }, 10);
-            document.body.style.overflow = 'hidden'; // منع تمرير الصفحة الرئيسية
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeDetailsPage() {
@@ -1036,11 +1311,10 @@
             
             setTimeout(() => {
                 modalOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // إعادة تفعيل تمرير الصفحة الرئيسية
+                document.body.style.overflow = 'auto'; 
             }, 500); 
         }
         
-        // --- وظائف المشغل (Player) ---
         function showLoadingAndPlay(seriesId, episodeNum) {
             closeDetailsPage(); 
             
@@ -1059,67 +1333,87 @@
                 if (countdown <= 0) {
                     clearInterval(timer);
                     loadingModal.style.display = 'none';
-                    playEpisode(seriesId, episodeNum); 
+                    
+                    if (episodeNum === 0) {
+                        playTrailer(seriesId); 
+                    } else {
+                        playEpisode(seriesId, episodeNum); 
+                    }
                 }
             }, 1000);
         }
-
-        function playEpisode(seriesId, episodeNum) {
-            const series = seriesData.find(s => s.id === seriesId);
-            if (!series) return;
-
-            // التأكد من أن رقم الحلقة لا يتجاوز الحدود
-            if (episodeNum < 1 || episodeNum > series.episodes) return;
-
-            currentPlayingSeriesId = seriesId;
-            currentPlayingEpisodeNum = episodeNum;
-
-            // الحصول على فيديو الـ Rumble (إذا لم يكن موجوداً، يستخدم رابط الحلقة 1 كـ Fallback)
-            const videoId = series.episodeLinks[episodeNum] || series.episodeLinks[1];
+        
+        function playVideo(series, videoId, title) {
+            currentPlayingSeriesId = series.id;
+            currentPlayingVideoId = videoId; 
             
-            document.getElementById('videoTitle').textContent = `${series.title} - الحلقة ${episodeNum}`;
-            document.getElementById('currentEpisodeNumDisplay').textContent = `${episodeNum}`;
+            document.getElementById('videoTitle').textContent = title;
+            document.getElementById('currentEpisodeNumDisplay').textContent = ''; 
             
             const rumblePlayer = document.getElementById('rumble_player');
             rumblePlayer.innerHTML = '';
             
-            // إعادة تحميل المشغل (قد تحتاج هذه الخطوة إلى اختبار دقيق مع Rumble)
             Rumble("play", { video: videoId, div: "rumble_player", autoplay: 1 });
             
             document.getElementById('videoPlayer').style.display = 'flex';
             document.body.style.overflow = 'hidden';
+        }
+        
+        function playEpisode(seriesId, episodeNum) {
+            const series = seriesData.find(s => s.id === seriesId);
+            if (!series) return;
+
+            if (episodeNum < 1 || episodeNum > series.episodes) return;
+
+            currentPlayingEpisodeNum = episodeNum;
+            const videoId = series.episodeLinks[episodeNum] || series.episodeLinks[1];
             
-            // تحديث حالة أزرار التنقل بين الحلقات
+            playVideo(series, videoId, `${series.title} - الحلقة ${episodeNum}`);
+            
+            document.getElementById('currentEpisodeNumDisplay').textContent = `${episodeNum}`;
+            
             updatePlayerNavigation(series.episodes, episodeNum);
         }
         
+        function playTrailer(seriesId) {
+            const series = seriesData.find(s => s.id === seriesId);
+            if (!series || !series.trailerId) return;
+
+            currentPlayingEpisodeNum = 0; 
+            const videoId = series.trailerId;
+            
+            playVideo(series, videoId, `${series.title} - تريلر المسلسل`);
+            
+            document.getElementById('prevEpisodeBtn').style.display = 'none';
+            document.getElementById('nextEpisodeBtn').style.display = 'none';
+            document.getElementById('currentEpisodeBtn').style.display = 'flex'; 
+            document.getElementById('currentEpisodeNumDisplay').textContent = 'تريلر';
+        }
+
         function closePlayer() {
             document.getElementById('videoPlayer').style.display = 'none';
             document.body.style.overflow = 'auto';
-            document.getElementById('rumble_player').innerHTML = ''; // إيقاف تشغيل الفيديو
+            document.getElementById('rumble_player').innerHTML = ''; 
             currentPlayingSeriesId = null;
             currentPlayingEpisodeNum = null;
+            currentPlayingVideoId = null; 
         }
         
-        // وظيفة التنقل بين الحلقات
         function navigateEpisode(direction) {
-            if (currentPlayingSeriesId !== null && currentPlayingEpisodeNum !== null) {
+            if (currentPlayingSeriesId !== null && currentPlayingEpisodeNum !== null && currentPlayingEpisodeNum > 0) {
                 const series = seriesData.find(s => s.id === currentPlayingSeriesId);
                 const nextEpisode = currentPlayingEpisodeNum + direction;
                 
                 if (nextEpisode >= 1 && nextEpisode <= series.episodes) {
-                    // إخفاء الأزرار مؤقتاً أثناء التحميل
                     document.getElementById('prevEpisodeBtn').style.display = 'none';
                     document.getElementById('nextEpisodeBtn').style.display = 'none';
                     document.getElementById('currentEpisodeBtn').style.display = 'block';
 
-                    // تشغيل الحلقة الجديدة مباشرة (يمكن إضافة شاشة تحميل بسيطة هنا إذا لزم الأمر)
                     playEpisode(currentPlayingSeriesId, nextEpisode);
                 }
             }
         }
         
-        // وظيفة تحديث أزرار التنقل
         function updatePlayerNavigation(totalEpisodes, currentEpisode) {
             const prevBtn = document.getElementById('prevEpisodeBtn');
             const nextBtn = document.getElementById('nextEpisodeBtn');
@@ -1127,30 +1421,25 @@
 
             prevBtn.style.display = 'none';
             nextBtn.style.display = 'none';
-            currentBtn.style.display = 'none'; // إخفاء زر الحالي افتراضياً
+            currentBtn.style.display = 'none'; 
 
             if (currentEpisode === 1) {
-                // الحلقة الأولى: إظهار زر "التالية" فقط، و "الحالية" (حسب طلبك: "زر حلقة 1 فقط")
                 if (totalEpisodes > 1) {
                     nextBtn.style.display = 'flex';
                 }
                 currentBtn.style.display = 'flex';
 
             } else if (currentEpisode > 1 && currentEpisode < totalEpisodes) {
-                // حلقة وسطى: إظهار "السابقة" و "التالية"
                 prevBtn.style.display = 'flex';
                 nextBtn.style.display = 'flex';
                 
             } else if (currentEpisode === totalEpisodes && totalEpisodes > 1) {
-                // الحلقة الأخيرة: إظهار "السابقة" فقط
                 prevBtn.style.display = 'flex';
             }
         }
         
-        // ربط أزرار المشغل بالوظيفة الجديدة
         document.getElementById('prevEpisodeBtn').onclick = () => navigateEpisode(-1);
         document.getElementById('nextEpisodeBtn').onclick = () => navigateEpisode(1);
-
     </script>
 </body>
-</html>
+    </html>
